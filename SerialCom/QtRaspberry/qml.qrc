@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>images/back-64.png</file>
+        <file>images/camera-64.png</file>
+        <file>images/circle-64.png</file>
+        <file>images/images-64.png</file>
+        <file>Slider.qml</file>
+        <file>Switch.qml</file>
+        <file>images/helvetica.ttf</file>
+        <file>ItemParam.qml</file>
+    </qresource>
+</RCC>

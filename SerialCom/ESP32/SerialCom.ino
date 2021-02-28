@@ -185,6 +185,10 @@ void loop()
                                 g_AdcEnabled = (bool)GetDataByte(g_InputBuffer);
                             }
                         }
+                    } else 
+                    {
+                        g_ReceiverStatus = RCV_ST_IDLE;
+                        break;
                     }
                 } break;
             }

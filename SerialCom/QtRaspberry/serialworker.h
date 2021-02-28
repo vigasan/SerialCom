@@ -37,6 +37,7 @@ signals:
     void valueChanged(const QString &value);
     void finished();
     void frameReceived(Frame *frame);
+    void serialConnected(bool _value);
 
 public slots:
     void doWork();

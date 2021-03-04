@@ -29,7 +29,9 @@ void FrameProcessor::FrameIncoming(Frame *frame)
                 emit changedAdc(frame->GetUInt16());
             } break;
         }
+        frame->deleteLater();
     }
+
 }
 
 void FrameProcessor::setPwm(quint8 color, quint8 value)

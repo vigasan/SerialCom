@@ -103,10 +103,7 @@ void SerialWorker::doWork()
                                 {
                                     if(inByte == Frame::FRAME_START)
                                     {
-                                        if (m_inFrame == nullptr)
-                                            m_inFrame = new Frame();
-                                        else
-                                            m_inFrame->Clear();
+                                        m_inFrame = new Frame();
                                         m_inFrame->AddByte(inByte);
                                         checksum = inByte;
                                         receiverStatus = RCV_ST_CMD;

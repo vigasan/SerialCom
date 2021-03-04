@@ -52,7 +52,6 @@ void SerialWorker::doWork()
     Frame *m_inFrame = nullptr;
     quint8 checksum = 0, xored = 0x00;
     int dataLength = 0;
-    int maxdataLength = 10;
 
     // Serial Port Initialization
     m_Serial = new QSerialPort();
@@ -84,7 +83,7 @@ void SerialWorker::doWork()
             {
                 QByteArray receivedData = m_Serial->readAll();
 
-                while(receivedData.count() > 0 && receivedData.count() < maxdataLength )
+                while(receivedData.count() > 0)
                 {
                     inByte = quint8(receivedData[0]);
                     receivedData.remove(0,1);

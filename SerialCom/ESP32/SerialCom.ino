@@ -67,6 +67,7 @@ byte g_ReceiverStatus = RCV_ST_IDLE;
 byte g_xorValue = 0x00;
 byte g_Checksum = 0;
 int  g_DataLength = 0;
+int  g_DataLengthFixed = 0;
 int  g_BufferIndex = 0;
 
 bool g_AdcEnabled = false;
@@ -137,6 +138,7 @@ void loop()
                 case RCV_ST_DATA_LENGTH:
                 {
                     g_DataLength = receivedByte;
+                    g_DataLengthFixed = g_DataLength;
                     if(g_DataLength > 0)
                     {
                         g_InputBuffer[g_BufferIndex++] = receivedByte;
@@ -158,7 +160,7 @@ void loop()
     
                 case RCV_ST_CHECKSUM:
                 {
-                    if(receivedByte == g_Checksum)
+                    if(receivedByte == g_Checksum && g_BufferIndex == (g_DataLengthFixed + FRAME_NUM_EXTRA_BYTES -1))
                     {   
                         g_ReceiverStatus = RCV_ST_IDLE;
                         g_InputBuffer[g_BufferIndex++] = receivedByte;

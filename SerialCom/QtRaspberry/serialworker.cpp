@@ -140,7 +140,7 @@ void SerialWorker::doWork()
 
                             case RCV_ST_CHECKSUM:
                                 {
-                                    if (inByte == checksum)
+                                    if (inByte == checksum && m_inFrame->GetBufferLength() == (dataLength + m_inFrame->FRAME_NUM_EXTRA_BYTES -1))
                                     {
                                         receiverStatus = RCV_ST_IDLE;
                                         m_inFrame->AddByte(checksum);
@@ -149,7 +149,6 @@ void SerialWorker::doWork()
                                     else
                                     {
                                         receiverStatus = RCV_ST_IDLE;
-                                        m_inFrame->Clear();
                                         delete m_inFrame;
                                     }
                                 } break;

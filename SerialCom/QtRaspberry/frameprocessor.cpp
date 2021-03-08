@@ -29,7 +29,7 @@ void FrameProcessor::FrameIncoming(Frame *frame)
                 emit changedAdc(frame->GetUInt16());
             } break;
         }
-        frame->deleteLater();
+        delete frame;
     }
 
 }

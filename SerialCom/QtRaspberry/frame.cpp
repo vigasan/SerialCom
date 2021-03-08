@@ -106,6 +106,13 @@ quint8  Frame::GetDataLength()
     return rv;
 }
 
+quint8  Frame::GetBufferLength()
+{
+    quint8 rv = m_buffer.length();
+    return rv;
+}
+
+
 quint8 Frame::GetUByte()
 {
     quint8 rv = 0;

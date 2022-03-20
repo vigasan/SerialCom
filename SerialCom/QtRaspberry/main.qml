@@ -1,5 +1,8 @@
-import QtQuick 2.12
-import QtQuick.Window 2.12
+import QtQuick 2.14
+import QtQuick.Window 2.14
+
+// For the singleton instance
+import com.raspberrypi.SerialCom 1.0
 
 Window
 {
@@ -165,9 +168,9 @@ Window
             onSwitched:
             {
                 if(on == true)   
-                    serial.enableAdc(1);
+                    FrameProcessorSingleton.enableAdc(1);
                 else
-                    serial.enableAdc(0);
+                    FrameProcessorSingleton.enableAdc(0);
             }
         }
 
@@ -240,7 +243,7 @@ Window
            pressCircle: "red"
            onValueChanged:
            {
-               serial.setPwm(cmd_PWM_LED_R, value);
+               FrameProcessorSingleton.setPwm(cmd_PWM_LED_R, value);
            }
         }
 
@@ -280,7 +283,7 @@ Window
           backgroundEmpty: "lightgray"
           onValueChanged:
           {
-              serial.setPwm(cmd_PWM_LED_G, value);
+              FrameProcessorSingleton.setPwm(cmd_PWM_LED_G, value);
           }
       }
 
@@ -322,7 +325,7 @@ Window
           pressCircle: "blue"
           onValueChanged:
           {
-              serial.setPwm(cmd_PWM_LED_B, value);
+              FrameProcessorSingleton.setPwm(cmd_PWM_LED_B, value);
           }
       }
 
@@ -342,25 +345,25 @@ Window
 
     Connections
     {
-        target: serial
+        target: FrameProcessorSingleton
 
-        onChangedInput1:
+        function onChangedInput1()
         {
-            if(value == 1)
+            if(value === 1)
                inctrl1.color = "lightgray";
             else
                inctrl1.color = "transparent";
         }
 
-        onChangedInput2:
+        function onChangedInput2()
         {
-            if(value == 1)
+            if(value === 1)
                inctrl2.color = "lightgray";
             else
                inctrl2.color = "transparent";
         }
 
-        onChangedAdc:
+        function onChangedAdc()
         {
             gaugeAdc.paramValue = value;
         }

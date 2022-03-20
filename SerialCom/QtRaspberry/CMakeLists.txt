@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 
 set(PROJECT_NAME "SerialCom")
+set(VERSION_MAJOR "5") ## 5 or 6
 
 project(${PROJECT_NAME} VERSION 0.1 LANGUAGES CXX)
 
@@ -8,7 +9,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-find_package(Qt5 COMPONENTS Core Gui Qml Quick QuickControls2 SerialPort REQUIRED)
+find_package(Qt${VERSION_MAJOR} COMPONENTS Core Gui Qml Quick QuickControls2 SerialPort REQUIRED)
 
 if (WIN32)
 #! [appicon_windows]
@@ -54,12 +55,12 @@ else()
 endif()
 
 target_link_libraries(${PROJECT_NAME}
-                      Qt5::Core
-                      Qt5::Gui
-                      Qt5::Qml
-                      Qt5::Quick
-                      Qt5::QuickControls2
-                      Qt5::SerialPort
+                      Qt${VERSION_MAJOR}::Core
+                      Qt${VERSION_MAJOR}::Gui
+                      Qt${VERSION_MAJOR}::Qml
+                      Qt${VERSION_MAJOR}::Quick
+                      Qt${VERSION_MAJOR}::QuickControls2
+                      Qt${VERSION_MAJOR}::SerialPort
 )
 
 set_target_properties(${PROJECT_NAME} 

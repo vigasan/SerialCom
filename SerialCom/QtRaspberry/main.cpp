@@ -23,8 +23,19 @@ int main(int argc, char *argv[])
 
 
     QQmlApplicationEngine engine;
-    QQmlContext* ctx = engine.rootContext();
-    ctx->setContextProperty("serial", frameProcessor);
+    //QQmlContext* ctx = engine.rootContext();
+    //ctx->setContextProperty("serial", frameProcessor);
+
+    // Singleton
+    //
+    qmlRegisterSingletonType<FrameProcessor>("com.raspberrypi.SerialCom", 1, 0, "FrameProcessorSingleton",
+                                         [&](QQmlEngine *engine, QJSEngine *scriptEngine) -> QObject * {
+            Q_UNUSED(engine)
+            Q_UNUSED(scriptEngine)
+
+            return frameProcessor;
+        });
+
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {

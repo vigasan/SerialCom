@@ -66,33 +66,6 @@ CMake: 程序设置：
 -DCMAKE_CXX_COMPILER:STRING=%{Compiler:Executable:Cxx}
 ```
 
-### offline
-> qt5.14.2+qtcreator5.03
-
-Installation of QtCreator:     
-After installing Qt, delete the QtCreator folder.    
-
-Specify the new QtCreator installation path as the QtCreator folder.
-
-CMake: 程序设置：    
-```
--GNMake Makefiles JOM
--DCMAKE_BUILD_TYPE:STRING=Debug
--DCMAKE_PROJECT_INCLUDE_BEFORE:PATH=%{IDE:ResourcePath}/package-manager/auto-setup.cmake
--DQT_QMAKE_EXECUTABLE:STRING=%{Qt:qmakeExecutable}
--DCMAKE_PREFIX_PATH:STRING=C:\Qt5.14.2\5.14.2\msvc2017\lib\cmake\Qt5
--DCMAKE_C_COMPILER:STRING=%{Compiler:Executable:C}
--DCMAKE_CXX_COMPILER:STRING=%{Compiler:Executable:Cxx}
-```
-
-## Visual Studio
-|qt|vc|
-|-|-|
-|v5.6.3|vc2013|
-|v5.9.9|vc2015|
-|v5.12.11|vc2017|
-|v5.14.2|vc2017|
-|v5.15.2|vc2019|
 ### vs2019(v16.11)
 ```bash
 .\vs_Community.exe --layout D:\win10soft\vs2019 `
